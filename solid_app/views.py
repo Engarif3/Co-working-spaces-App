@@ -10,11 +10,15 @@ from solid.solid_api import SolidAPI
 def add_text_file_to_solid(request):
  if request.method == 'POST':
     # Replace with your Solid Pod details from solidcommunity.net
+    
+    #https://engarif5.solidcommunity.net/
     # POD_ENDPOINT = 'https://engarif5.solidcommunity.net/'
-    USERNAME = 'engarif5'
-    PASSWORD = 'Germany@-14'
+    # engarif5
+    # Germany@-14 
+    USERNAME = request.POST.get('username') 
+    PASSWORD = request.POST.get('password')
     POD_ENDPOINT = f'https://{USERNAME}.solidcommunity.net/'
-    PRIVATE_RES = POD_ENDPOINT + 'private/example.txt'
+    PRIVATE_RES = POD_ENDPOINT + 'private/arif5.txt'
 
     # Initialize SolidAPI with authentication
     auth = Auth()
@@ -27,7 +31,7 @@ def add_text_file_to_solid(request):
     if not file_exists:
         try:
             # Create a text file
-            file_content = "Hello, this is the content of the text file."
+            file_content = "Hello"
             f = io.BytesIO(file_content.encode('UTF-8'))
             api.put_file(PRIVATE_RES, f, 'text/plain')
 
@@ -42,4 +46,4 @@ def add_text_file_to_solid(request):
         return render(request, 'success.html', {'message': 'File already exists'})
  else:
   return render(request, 'login.html')
-# Your success.html and error.html templates should be created accordingly.
+
