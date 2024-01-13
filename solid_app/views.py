@@ -18,7 +18,7 @@ def add_text_file_to_solid(request):
     USERNAME = request.POST.get('username') 
     PASSWORD = request.POST.get('password')
     POD_ENDPOINT = f'https://{USERNAME}.solidcommunity.net/'
-    PRIVATE_RES = POD_ENDPOINT + 'private/arif5.txt'
+    PRIVATE_RES = POD_ENDPOINT + f'private/{USERNAME}.txt'
 
     # Initialize SolidAPI with authentication
     auth = Auth()
@@ -31,7 +31,7 @@ def add_text_file_to_solid(request):
     if not file_exists:
         try:
             # Create a text file
-            file_content = "Hello"
+            file_content = f"Hello {USERNAME}"
             f = io.BytesIO(file_content.encode('UTF-8'))
             api.put_file(PRIVATE_RES, f, 'text/plain')
 
