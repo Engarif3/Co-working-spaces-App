@@ -6,7 +6,7 @@ from solid.auth import Auth
 from solid.solid_api import SolidAPI
 
 
-
+#  python manage.py runserver 
 def add_text_file_to_solid(request):
  if request.method == 'POST':
     # Replace with your Solid Pod details from solidcommunity.net
